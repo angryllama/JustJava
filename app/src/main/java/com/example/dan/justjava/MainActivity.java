@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +21,39 @@ public class MainActivity extends AppCompatActivity {
 
     // Variable for number of Coffees
     int quantity = 0;
+    // Variable for total price of order
+    int price = 0;
+    // Boolean for whipped cream
+    //boolean isWhipped = false;
+    // Boolean for whipped cream
+    //boolean isChocolate = false;
 
 
+    /**
+     * This method is called when to calculate price of order
+     */
+    public int calculatePrice() {
+        return quantity * 5;
+    }
+
+    /**
+     * This method is called to create the text of the order summary
+     */
+    public String createSummary(int price) {
+
+        CheckBox isWhippedBox = (CheckBox) findViewById(R.id.boxWhipped);
+        boolean isWhipped = isWhippedBox.isChecked();
+
+        CheckBox isChocolateBox = (CheckBox) findViewById(R.id.boxChocolate);
+        boolean isChocolate = isChocolateBox.isChecked();
+
+        return "Name: Kunal" +
+                "\nAdd Whipped Cream?: " + isWhipped +
+                "\nAdd Chocolate?: " + isChocolate +
+                "\nQuantity: " + quantity +
+                "\nTotal $" + price +
+                "\nThank you!";
+    }
 
     /**
      * This method is called when the order button is clicked.
@@ -28,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         //display(quantity);
         //displayPrice(quantity * 5);
-        int price = quantity * 5;
-        String priceMessage = "Amount Due $" + price + "\nThank you!";
-        displayMessage(priceMessage);
+        price = calculatePrice();
+        displayMessage(createSummary(price));
     }
 
     /**
@@ -46,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
@@ -54,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
     }
 
     // Method for increasing quantity

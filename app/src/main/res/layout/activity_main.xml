@@ -18,12 +18,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/nameField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="textCapWords" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Toppings"
                 android:textAllCaps="true"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                style="@style/Header"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -119,14 +128,30 @@
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
-            <Button
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:onClick="submitOrder"
-                android:text="order"
-                android:textAllCaps="true"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:onClick="submitOrder"
+                    android:text="Order"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:onClick="submitOrderEmail"
+                    android:text="Email Order"
+                    android:textAllCaps="true"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
